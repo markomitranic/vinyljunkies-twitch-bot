@@ -1,0 +1,42 @@
+{
+  "name": "vinyljunkies-twitch-bot",
+  "version": "1.0.0",
+  "description": "A simple Twitch bot for VinylJunkies that listens for !new commands",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:markomitranic/vinyljunkies-twitch-bot.git"
+  },
+  "scripts": {
+    "start": "tsup-node && node ./dist/index.js",
+    "auth": "tsup-node src/auth.ts && node dist/auth.js",
+    "lint": "pnpm lint:style && pnpm lint:code && pnpm lint:typecheck",
+    "lint:code": "npx eslint \"src/**/*.{js,ts}\"",
+    "lint:style": "npx prettier -c .",
+    "lint:typecheck": "tsc --noEmit",
+    "nodecheck": "CODE_NODE_VERSION=\"v$(cat .nvmrc)\" && NODE_VERSION=$(node --version) && if [ $NODE_VERSION != $CODE_NODE_VERSION ]; then echo \"ERROR: Project Node: $CODE_NODE_VERSION, Actual Node: $NODE_VERSION\n\" && exit 1; fi",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "tmi.js": "^1.8.5",
+    "zod": "^3.24.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.24.0",
+    "@tsconfig/node22": "^22.0.1",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1",
+    "@types/tmi.js": "^1.8.6",
+    "@typescript-eslint/eslint-plugin": "^8.30.1",
+    "@typescript-eslint/parser": "^8.30.1",
+    "eslint": "^9.24.0",
+    "express": "^5.1.0",
+    "husky": "^9.0.11",
+    "open": "^10.1.1",
+    "prettier": "3.5.3",
+    "tsup": "^8.0.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.30.1"
+  },
+  "packageManager": "pnpm@10.7.1+sha512.2d92c86b7928dc8284f53494fb4201f983da65f0fb4f0d40baafa5cf628fa31dae3e5968f12466f17df7e97310e30f343a648baea1b9b350685dafafffdf5808"
+}

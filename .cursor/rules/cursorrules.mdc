@@ -1,0 +1,127 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Cursor Rules Location
+
+Rules for placing and organizing Cursor rule files in the repository.
+
+<rule>
+name: cursor_rules_location
+description: Standards for placing Cursor rule files in the correct directory
+filters:
+  # Match any .mdc files
+  - type: file_extension
+    pattern: "\\.mdc$"
+  # Match files that look like Cursor rules
+  - type: content
+    pattern: "(?s)<rule>.*?</rule>"
+  # Match file creation events
+  - type: event
+    pattern: "file_create"
+
+actions:
+  - type: reject
+    conditions:
+      - pattern: "^(?!\\.\\/\\.cursor\\/rules\\/.*\\.mdc$)"
+        message: "Cursor rule files (.mdc) must be placed in the .cursor/rules directory"
+
+  - type: suggest
+    message: |
+      When creating Cursor rules:
+
+      1. Always place rule files in PROJECT_ROOT/.cursor/rules/:
+         ```
+         .cursor/rules/
+         ├── your-rule-name.mdc
+         ├── another-rule.mdc
+         └── ...
+         ```
+
+      2. Follow the naming convention:
+         - Use kebab-case for filenames
+         - Always use .mdc extension
+         - Make names descriptive of the rule's purpose
+
+      3. Directory structure:
+         ```
+         PROJECT_ROOT/
+         ├── .cursor/
+         │   └── rules/
+         │       ├── your-rule-name.mdc
+         │       └── ...
+         └── ...
+         ```
+
+      4. Never place rule files:
+         - In the project root
+         - In subdirectories outside .cursor/rules
+         - In any other location
+
+examples:
+  - input: |
+      # Bad: Rule file in wrong location
+      rules/my-rule.mdc
+      my-rule.mdc
+      .rules/my-rule.mdc
+
+      # Good: Rule file in correct location
+      .cursor/rules/my-rule.mdc
+    output: "Correctly placed Cursor rule file"
+
+metadata:
+  priority: high
+  version: 1.0
+</rule>
+
+<rule>
+name: cursor_rules_editing
+description: Standards for editing cursor rule files
+filters:
+  - type: file_extension
+    pattern: "\\.mdc$"
+  - type: event
+    pattern: "file_edit"
+
+actions:
+  - type: reject
+    conditions:
+      - pattern: "^\\.\\/\\.cursor\\/rules\\/cursorrules\\.mdc$"
+        message: "The cursorrules.mdc file cannot be edited after initial setup. Use projectrules.mdc for global rules and create new rule files for specific purposes."
+
+  - type: suggest
+    message: |
+      For managing rules:
+      
+      1. cursorrules.mdc:
+         - Contains core rules about rule file management
+         - Cannot be edited after initial setup
+         - DO NOT modify this file
+      
+      2. projectrules.mdc:
+         - Use for all global project rules
+         - Can be edited as needed
+         - Should contain general development guidelines
+      
+      3. Other rule files:
+         - Create new .mdc files for specific purposes
+         - Place in .cursor/rules directory
+         - Follow naming conventions
+
+examples:
+  - input: |
+      # Bad: Trying to edit cursorrules.mdc
+      edit .cursor/rules/cursorrules.mdc
+      
+      # Good: Adding global rules
+      edit .cursor/rules/projectrules.mdc
+      
+      # Good: Creating specific rules
+      create .cursor/rules/react-components.mdc
+    output: "Following proper rule file management"
+
+metadata:
+  priority: high
+  version: 1.0
+</rule>

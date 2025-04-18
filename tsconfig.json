@@ -1,0 +1,40 @@
+{
+  "extends": "@tsconfig/node22/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist/src",
+    "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "~/*": ["./src/*"]
+    },
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "incremental": true,
+    "disableSourceOfProjectReferenceRedirect": true,
+    "strict": true,
+    "checkJs": true,
+    "noEmit": true,
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "emitDeclarationOnly": false,
+    "typeRoots": ["./node_modules/@types", "./src/types"]
+  },
+
+  "include": ["src", "prettier.config.mjs"],
+  "exclude": ["dist", "bundle", "node_modules"]
+}

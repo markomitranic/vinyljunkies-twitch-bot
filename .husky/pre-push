@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -e # Any command which returns non-zero exit code will cause this shell script to exit immediately
+# set -x # Activate debugging to show execution details: all commands will be printed before execution
+
+echo "\n\n[Husky] Running pre-push hooks... (disable with HUSKY=0 )\n\n"
+
+if ! git diff-index --quiet HEAD --; then
+    echo "❌ Uncommitted changes detected. Please commit or stash your changes before pushing."
+    exit 1
+fi
+
+echo "💽 (operation) Checking Node version."
+pnpm nodecheck
+
+echo "💅 (operation) Prettier."
+pnpm lint:style
+
+echo "👀 (operation) Linting all files."
+pnpm lint:code
+
+echo "\n🤖 (operation) Compile TypeScript."
+pnpm lint:typecheck
+
+echo "🔋 (operation) Running the test batteries."
+# pnpm test
+# No tests yet...
+
+echo "\n\n[Husky] Success!\n\n"

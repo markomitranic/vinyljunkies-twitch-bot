@@ -1,0 +1,30 @@
+---
+description: Project-wide development standards and best practices
+globs: 
+alwaysApply: true
+---
+# Project-Wide Development Rules
+
+<rule>
+name: project_standards
+description: General development standards and best practices for the project
+filters:
+  - type: file_extension
+    pattern: "\\.(astro|jsx|tsx|js|ts)$"
+  - type: event
+    pattern: "(file_create|file_edit)"
+
+actions:
+  - type: suggest
+    message: |
+      Purpose of the project:
+
+      1. A long running node process written with Typescript, hosted on Fly.io.
+      2. Connects to Twitch chat on a specified channel, and listens to a set of commands.
+      3. Commands are a chain of responsibility, where each processor deals with a single command.
+
+metadata:
+  priority: high
+  version: 1.0
+</rule>
+

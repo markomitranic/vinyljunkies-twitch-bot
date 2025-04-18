@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "mikestead.dotenv",
+    "yoavbls.pretty-ts-errors",
+    "foxundermoon.shell-format"
+  ],
+  "unwantedRecommendations": []
+}
