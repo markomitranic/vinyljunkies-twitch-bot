@@ -5,7 +5,10 @@ import z from "zod";
 
 const app = express();
 
-// A homepage that explains the process and prompts the user to authorize the app.
+/**
+ * A homepage that explains the process and prompts the user to authorize the app.
+ * @see http://localhost:3000
+ */
 app.get("/", (_req, res) => {
   res.send(
     webpage(
@@ -69,7 +72,10 @@ app.get("/", (_req, res) => {
   );
 });
 
-// A form-submission route that redirects the user to the Twitch authorization page.
+/**
+ * A form-submission route that redirects the user to the Twitch authorization page.
+ * @see http://localhost:3000/authorize?client_id=4fulp...4yoki
+ */
 app.get("/authorize", (req, res) => {
   const params = z.object({ client_id: z.string().min(1) }).parse(req.query);
   const url = new URL("https://id.twitch.tv/oauth2/authorize");
@@ -80,21 +86,85 @@ app.get("/authorize", (req, res) => {
   res.redirect(url.toString());
 });
 
-// A route that handles the callback from the Twitch authorization page.
+/**
+ * A route that handles the callback from the Twitch authorization page.
+ * @see http://localhost:3000/callback?code=fko8umzkfa4hvv4b96ga2v8ymgrbzg&scope=chat%3Aread+chat%3Aedit
+ */
 app.get("/callback", (req, res) => {
-  // http://localhost:3000/?code=fko8umzkfa4hvv4b96ga2v8ymgrbzg&scope=chat%3Aread+chat%3Aedit
   const { code } = z.object({ code: z.string() }).parse(req.query);
-  console.log(code);
   res.send(
     webpage(
       "Twitch Bot Auth",
       `
-        <h1 class="text-3xl font-bold underline text-clifford">
-          Callback received!
-        </h1>
-        <p>
-          <code>${JSON.stringify(code, null, 2)}</code>
-        </p>
+        <div class="flex flex-col gap-2 items-start justify-start">
+          <h1 class="text-3xl font-bold underline text-clifford mb-6">
+            Your new token is ready!
+          </h1>
+          <p>
+            You have successfully authorized the app. Please copy your token and use it in your <code>.env</code> file to authenticate with Twitch.
+          </p>
+          <div
+            class="flex flex-col gap-2 items-start justify-start"
+          >
+            <label
+              for="client_id"
+              class="block text-sm/6 font-medium text-gray-900"
+              >App Secret Token</label
+            >
+            <div class="mt-2 flex">
+              <div class="-mr-px grid grow grid-cols-1 focus-within:relative">
+                <input
+                  type="text"
+                  name="query"
+                  id="query"
+                  value="${code}"
+                  class="col-start-1 bg-gray-100 row-start-1 block w-full rounded-l-md py-1.5 pr-3 pl-10 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:pl-9 sm:text-sm/6"
+                  placeholder="No token found."
+                />
+                <svg
+                  class="pointer-events-none col-start-1 row-start-1 ml-3 size-5 self-center text-gray-400 sm:size-4"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  data-slot="icon"
+                >
+                  <path
+                    d="M8.5 4.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10.9 12.006c.11.542-.348.994-.9.994H2c-.553 0-1.01-.452-.902-.994a5.002 5.002 0 0 1 9.803 0ZM14.002 12h-1.59a2.556 2.556 0 0 0-.04-.29 6.476 6.476 0 0 0-1.167-2.603 3.002 3.002 0 0 1 3.633 1.911c.18.522-.283.982-.836.982ZM12 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
+                  />
+                </svg>
+              </div>
+              <button
+                type="button"
+                onclick="(() => {
+                  const code = '${code}';
+                  navigator.clipboard.writeText(code);
+                  const button = event.target;
+                  const originalText = button.textContent;
+                  button.textContent = 'Copied!';
+                  setTimeout(() => {
+                    button.textContent = originalText;
+                  }, 2000);
+                })()"
+                class="flex cursor-pointer shrink-0 items-center gap-x-1.5 rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 outline-1 -outline-offset-1 outline-gray-300 hover:bg-gray-50 focus:relative focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+              >
+                <svg
+                  class="-ml-0.5 size-4 text-gray-400"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  data-slot="icon"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2 2.75A.75.75 0 0 1 2.75 2h9.5a.75.75 0 0 1 0 1.5h-9.5A.75.75 0 0 1 2 2.75ZM2 6.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 0 1.5h-5.5A.75.75 0 0 1 2 6.25Zm0 3.5A.75.75 0 0 1 2.75 9h3.5a.75.75 0 0 1 0 1.5h-3.5A.75.75 0 0 1 2 9.75ZM9.22 9.53a.75.75 0 0 1 0-1.06l2.25-2.25a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1-1.06 1.06l-.97-.97v5.69a.75.75 0 0 1-1.5 0V8.56l-.97.97a.75.75 0 0 1-1.06 0Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Copy
+              </button>
+            </div>
+          </dib>
+        </div>
       `,
     ),
   );
