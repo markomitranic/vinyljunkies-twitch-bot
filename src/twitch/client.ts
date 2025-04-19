@@ -1,9 +1,6 @@
 import tmi, { type Client } from "tmi.js";
 import z from "zod";
-import {
-  prepareCommandChain,
-  runCommandChain,
-} from "~/commands/runCommandChain";
+import { runCommandChain } from "~/commands/runCommandChain";
 
 let clientSingleton: Client;
 
@@ -26,16 +23,13 @@ export function getClient(): Client {
     channels: [env.TWITCH_CHANNEL],
   });
 
-  // Prepare the command chain.
-  prepareCommandChain(client);
-
   // Register our event handlers
   client.on("connected", (addr, port) =>
     console.log(`* Connected to ${addr}:${port}`),
   );
   client.on("message", (channel, userstate, message, self) => {
     if (self) return; // Ignore echoed messages.
-    void runCommandChain({ channel, userstate, message, self });
+    void runCommandChain(client, { channel, userstate, message, self });
   });
 
   clientSingleton = client;

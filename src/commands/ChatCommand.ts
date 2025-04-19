@@ -2,12 +2,6 @@ import { type Client } from "tmi.js";
 import { type EventArguments } from "~/twitch/EventArguments";
 
 export abstract class ChatCommand {
-  protected readonly client: Client;
-
-  constructor(client: Client) {
-    this.client = client;
-  }
-
   public abstract shouldHandle(args: EventArguments): Promise<boolean>;
-  public abstract execute(args: EventArguments): Promise<void>;
+  public abstract execute(conn: Client, args: EventArguments): Promise<void>;
 }
