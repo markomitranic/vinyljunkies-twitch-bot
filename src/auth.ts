@@ -2,6 +2,14 @@ import "dotenv/config";
 import express from "express";
 import open from "open";
 import z from "zod";
+import { parseResponse } from "./utils/parseResponse";
+
+const env = z
+  .object({
+    APP_CLIENT_ID: z.string(),
+    APP_CLIENT_SECRET: z.string(),
+  })
+  .parse(process.env);
 
 const app = express();
 
@@ -36,7 +44,7 @@ app.get("/", (_req, res) => {
             <input
               type="text"
               name="client_id"
-              value="${process.env.APP_CLIENT_ID}"
+              value="${env.APP_CLIENT_ID}"
               id="client_id"
               class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               placeholder="4fulp...4yoki"
@@ -90,8 +98,11 @@ app.get("/authorize", (req, res) => {
  * A route that handles the callback from the Twitch authorization page.
  * @see http://localhost:3000/callback?code=fko8umzkfa4hvv4b96ga2v8ymgrbzg&scope=chat%3Aread+chat%3Aedit
  */
-app.get("/callback", (req, res) => {
+app.get("/callback", async (req, res) => {
   const { code } = z.object({ code: z.string() }).parse(req.query);
+  const accessToken = await getToken(code);
+  console.log(accessToken);
+
   res.send(
     webpage(
       "Twitch Bot Auth",
@@ -117,7 +128,7 @@ app.get("/callback", (req, res) => {
                   type="text"
                   name="query"
                   id="query"
-                  value="oauth:${code}"
+                  value="oauth:${accessToken}"
                   class="col-start-1 bg-gray-100 row-start-1 block w-full rounded-l-md py-1.5 pr-3 pl-10 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:pl-9 sm:text-sm/6"
                   placeholder="No token found."
                 />
@@ -136,7 +147,7 @@ app.get("/callback", (req, res) => {
               <button
                 type="button"
                 onclick="(() => {
-                  const code = 'oauth:${code}';
+                  const code = 'oauth:${accessToken}';
                   navigator.clipboard.writeText(code);
                   const button = event.target;
                   const originalText = button.textContent;
@@ -196,4 +207,27 @@ function webpage(title: string, body: string) {
       </body>
     </html>
   `;
+}
+
+export async function getToken(authorizationCode: string) {
+  const response = await fetch("https://id.twitch.tv/oauth2/token", {
+    method: "POST",
+    body: new URLSearchParams({
+      client_id: env.APP_CLIENT_ID,
+      client_secret: env.APP_CLIENT_SECRET,
+      code: authorizationCode,
+      grant_type: "authorization_code",
+      redirect_uri: "http://localhost:3000/callback",
+    }),
+  });
+
+  const { data } = await parseResponse<{
+    access_token: string;
+    expires_in: number;
+    refresh_token: string;
+    scope: string[];
+    token_type: string;
+  }>(response, "https://id.twitch.tv/oauth2/token");
+
+  return data.access_token;
 }
