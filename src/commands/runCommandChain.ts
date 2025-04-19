@@ -1,4 +1,4 @@
-import { type EventArguments } from "~/EventArguments";
+import { type EventArguments } from "~/twitch/EventArguments";
 import { type ChatCommand } from "./ChatCommand";
 
 const commands: ChatCommand[] = [];

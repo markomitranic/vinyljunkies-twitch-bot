@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { getClient } from "./client";
+import { getClient } from "./twitch/client";
 
 async function main() {
   const client = getClient();

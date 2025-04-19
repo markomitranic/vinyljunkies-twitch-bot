@@ -1,6 +1,6 @@
 import tmi, { type Client } from "tmi.js";
 import z from "zod";
-import { runCommandChain } from "./commands/runCommandChain";
+import { runCommandChain } from "~/commands/runCommandChain";
 
 let clientSingleton: Client;
 

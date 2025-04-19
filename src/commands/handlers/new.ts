@@ -1,4 +1,4 @@
-import { type EventArguments } from "~/EventArguments";
+import { type EventArguments } from "~/twitch/EventArguments";
 import { ChatCommand } from "../ChatCommand";
 
 export class NewCommand extends ChatCommand {
