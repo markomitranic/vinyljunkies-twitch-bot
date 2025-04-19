@@ -6,8 +6,18 @@ export class NewCommand extends ChatCommand {
     const messageContent = args.message.trim().toLowerCase();
     return Promise.resolve(messageContent === "!new");
   }
-  public execute(_args: EventArguments): Promise<void> {
+  public async execute({
+    channel,
+    userstate,
+    message,
+  }: EventArguments): Promise<void> {
     console.log("New command executed but is not implemented yet");
+
+    await this.client.say(
+      channel,
+      `@${userstate.username}, you said: "${message}"`,
+    );
+
     return Promise.resolve();
   }
 }
