@@ -4,3 +4,6 @@
 .env
 Dockerfile
 fly.toml
+dist
+.cursor
+.vscode
