@@ -13,9 +13,9 @@ A simple Twitch chat bot that connects to a channel and listens for the `!new` c
    1. Create a private Twitch Application at (Twitch Dev Console)[https://dev.twitch.tv/console] with `http://localhost:3000/callback` as a callback.
    2. Start the auth process with `pnpm auth` and follow instructions.
 4. Create an empty variables file from our template `cp .env.example .env` and fill out the variables:
-   - TWITCH_OAUTH_TOKEN - the OAuth authorization token you got in the previous step
-   - TWITCH_USERNAME - the username of your bot.
-   - TWITCH_CHANNEL - target channel to join
+   - `TWITCH_OAUTH_TOKEN` - the OAuth authorization token you got in the previous step
+   - `TWITCH_USERNAME` - the username of your bot.
+   - `TWITCH_CHANNEL` - target channel to join
 5. Start the bot with `pnpm start`.
 
 **Pro tip:** If you find yourself doing auth often, for whatever weird reason, you can add `APP_CLIENT_ID` to the `.env` file in order for it to be pre-filled. :)
