@@ -1,9 +1,0 @@
-/.git
-/node_modules
-.dockerignore
-.env
-Dockerfile
-fly.toml
-dist
-.cursor
-.vscode
