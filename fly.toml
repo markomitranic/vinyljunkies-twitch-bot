@@ -15,3 +15,7 @@ primary_region = 'fra'
   memory_mb = 512
 
 [[services]]
+
+[[restart]]
+  policy = "never"
+  retries = 1
