@@ -117,7 +117,7 @@ app.get("/callback", (req, res) => {
                   type="text"
                   name="query"
                   id="query"
-                  value="${code}"
+                  value="oauth:${code}"
                   class="col-start-1 bg-gray-100 row-start-1 block w-full rounded-l-md py-1.5 pr-3 pl-10 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:pl-9 sm:text-sm/6"
                   placeholder="No token found."
                 />
@@ -136,7 +136,7 @@ app.get("/callback", (req, res) => {
               <button
                 type="button"
                 onclick="(() => {
-                  const code = '${code}';
+                  const code = 'oauth:${code}';
                   navigator.clipboard.writeText(code);
                   const button = event.target;
                   const originalText = button.textContent;
