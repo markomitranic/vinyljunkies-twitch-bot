@@ -12,8 +12,6 @@ export class HelloCommand extends ChatCommand {
     userstate,
     message,
   }: EventArguments): Promise<void> {
-    console.log("HANDLED", message);
-    await this.client.say("vinyljunkies", `@${message.split(" ")[0]}, heya!`);
     await this.client.say(
       channel,
       `@${userstate.username}, you said: "${message}"`,
