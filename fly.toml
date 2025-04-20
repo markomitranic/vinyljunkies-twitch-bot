@@ -4,7 +4,7 @@
 #
 
 app = 'vinyljunkies-twitch-bot'
-primary_region = 'fra'
+primary_region = 'arn'
 
 [build]
 
@@ -12,8 +12,10 @@ primary_region = 'fra'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-  count = 1
   memory_mb = 512
+
+[[scale]]
+  count = 1
 
 [[services]]
 
