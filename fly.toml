@@ -17,8 +17,6 @@ primary_region = 'arn'
 [[scale]]
   count = 1
 
-[[services]]
-
 [[restart]]
   policy = "never"
   retries = 1
