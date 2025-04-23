@@ -19,13 +19,13 @@ export async function getAuthProvider() {
       refresh_token: z.string(),
       expires_in: z.number(),
       scope: z.array(z.string()),
-      token_type: z.string(),
     })
     .parse(JSON.parse(tokenConfig.value));
 
   const newAuthProvider = new RefreshingAuthProvider({
     clientId: env.APP_CLIENT_ID,
     clientSecret: env.APP_CLIENT_SECRET,
+    appImpliedScopes: ["chat:read", "chat:edit"],
   });
 
   newAuthProvider.onRefresh((_userId, newTokenData) => {
@@ -33,13 +33,16 @@ export async function getAuthProvider() {
     void setConfig("twitch_auth_token", JSON.stringify(newTokenData));
   });
 
-  await newAuthProvider.addUserForToken({
-    accessToken: tokenData.access_token,
-    refreshToken: tokenData.refresh_token,
-    expiresIn: tokenData.expires_in,
-    scope: tokenData.scope,
-    obtainmentTimestamp: dayjs(tokenConfig.updatedAt).valueOf(),
-  });
+  await newAuthProvider.addUserForToken(
+    {
+      accessToken: tokenData.access_token,
+      refreshToken: tokenData.refresh_token,
+      expiresIn: tokenData.expires_in,
+      scope: tokenData.scope,
+      obtainmentTimestamp: dayjs(tokenConfig.updatedAt).valueOf(),
+    },
+    ["chat"],
+  );
 
   authProvider = newAuthProvider;
   return authProvider;

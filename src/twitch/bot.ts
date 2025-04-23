@@ -14,5 +14,9 @@ export async function getBot(commands: BotCommand[]) {
     commands,
   });
 
+  bot.onConnect(() => {
+    console.log("Bot connected to channel", env.TWITCH_CHANNEL);
+  });
+
   return bot;
 }

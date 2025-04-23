@@ -229,5 +229,7 @@ export async function getToken(authorizationCode: string) {
     token_type: string;
   }>(response, "https://id.twitch.tv/oauth2/token");
 
+  console.log(data);
+
   return data.access_token;
 }
