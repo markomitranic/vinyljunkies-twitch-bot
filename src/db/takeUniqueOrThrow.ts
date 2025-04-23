@@ -2,6 +2,7 @@
  * A helper function allowing us to take a single row from a database query
  * and throw an error if there are more than one.
  *
+ * @see https://github.com/drizzle-team/drizzle-orm/discussions/1499
  * @example
  * db.select().from(configTable).then(takeUniqueOrThrow);
  */
