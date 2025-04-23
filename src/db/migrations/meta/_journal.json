@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1745434599905,
-      "tag": "0000_sad_invisible_woman",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1745441496431,
-      "tag": "0001_green_mister_sinister",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1745445677650,
-      "tag": "0002_needy_ultimo",
+      "when": 1745447188380,
+      "tag": "0000_cooing_amphibian",
       "breakpoints": true
     }
   ]

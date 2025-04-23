@@ -1,1 +1,0 @@
-CREATE INDEX `username_idx` ON `new_events` (`username`);

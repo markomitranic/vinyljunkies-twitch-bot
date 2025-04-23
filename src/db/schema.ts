@@ -4,9 +4,9 @@ import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 export const configTable = sqliteTable("config", {
   key: text().primaryKey().unique(),
   value: text().notNull(),
-  updatedAt: integer({ mode: "timestamp" })
-    .default(sql`(CURRENT_TIMESTAMP)`)
-    .$onUpdate(() => sql`(CURRENT_TIMESTAMP)`)
+  updatedAt: text()
+    .default(sql`(CURRENT_DATE)`)
+    .$onUpdate(() => sql`(CURRENT_DATE)`)
     .notNull(),
 });
 
@@ -17,8 +17,8 @@ export const newEventsTable = sqliteTable(
       .primaryKey({ autoIncrement: true })
       .unique(),
     username: text().notNull(),
-    createdAt: integer({ mode: "timestamp" })
-      .default(sql`(CURRENT_TIMESTAMP)`)
+    createdAt: text()
+      .default(sql`(CURRENT_DATE)`)
       .notNull(),
   },
   (table) => [index("username_idx").on(table.username)],

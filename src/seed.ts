@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { db } from "~/db/db";
 import { newEventsTable } from "~/db/schema";
 
@@ -46,19 +47,16 @@ const generateUsernames = () => {
 
 // Generate a random date within the last 6 months
 const getRandomDate = () => {
-  const now = new Date();
-  const sixMonthsAgo = new Date(now.getTime() - 180 * 24 * 60 * 60 * 1000);
-  return new Date(
-    sixMonthsAgo.getTime() +
-      Math.random() * (now.getTime() - sixMonthsAgo.getTime()),
-  );
+  const now = dayjs();
+  const randomDateWithinSixMonths = now.subtract(Math.random() * 180, "day");
+  return randomDateWithinSixMonths.format("YYYY-MM-DD");
 };
 
 export const seed = async () => {
   console.log("🌱 Starting seed process...");
 
   const usernames = generateUsernames();
-  const events: { username: string; createdAt: Date }[] = [];
+  const events: { username: string; createdAt: string }[] = [];
 
   // Generate 1000 events
   for (let i = 0; i < TOTAL_EVENTS; i++) {
@@ -69,9 +67,6 @@ export const seed = async () => {
       createdAt: getRandomDate(),
     });
   }
-
-  // Sort events by createdAt to maintain chronological order
-  events.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
 
   try {
     // Insert all events
