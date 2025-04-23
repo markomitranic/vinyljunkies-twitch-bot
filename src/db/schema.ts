@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const configTable = sqliteTable("config", {
   key: text().primaryKey().unique(),
@@ -10,10 +10,16 @@ export const configTable = sqliteTable("config", {
     .notNull(),
 });
 
-export const newEventsTable = sqliteTable("new_events", {
-  id: integer({ mode: "number" }).primaryKey({ autoIncrement: true }).unique(),
-  username: text().notNull(),
-  createdAt: integer({ mode: "timestamp" })
-    .default(sql`(CURRENT_TIMESTAMP)`)
-    .notNull(),
-});
+export const newEventsTable = sqliteTable(
+  "new_events",
+  {
+    id: integer({ mode: "number" })
+      .primaryKey({ autoIncrement: true })
+      .unique(),
+    username: text().notNull(),
+    createdAt: integer({ mode: "timestamp" })
+      .default(sql`(CURRENT_TIMESTAMP)`)
+      .notNull(),
+  },
+  (table) => [index("username_idx").on(table.username)],
+);

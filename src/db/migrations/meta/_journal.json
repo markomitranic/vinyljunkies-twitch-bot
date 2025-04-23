@@ -15,6 +15,13 @@
       "when": 1745441496431,
       "tag": "0001_green_mister_sinister",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1745445677650,
+      "tag": "0002_needy_ultimo",
+      "breakpoints": true
     }
   ]
 }
