@@ -3,7 +3,7 @@ import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const configTable = sqliteTable("config", {
   key: text().primaryKey().unique(),
-  value: text("value").notNull(),
+  value: text().notNull(),
 });
 
 export const newEventsTable = sqliteTable("new_events", {
