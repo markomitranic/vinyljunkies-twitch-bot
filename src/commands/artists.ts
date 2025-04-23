@@ -1,11 +1,11 @@
 import { createBotCommand } from "@twurple/easy-bot";
+import { NewEvents } from "~/repository/NewEvents";
 
 export const artistsCommand = createBotCommand(
   "artists",
-  async (_params, { reply, userName, userDisplayName }) => {
-    // increase total count - userName
-    // get total count
-    const totalCount = 30;
+  async (_params, { reply }) => {
+    const totalUsersCount = await NewEvents.getTotalUsersCount();
+    const totalCount = await NewEvents.getTotalCount();
 
     await reply(
       [
@@ -14,9 +14,9 @@ export const artistsCommand = createBotCommand(
         `Feb 2025 => 12 artists`,
         `Mar 2025 => 12 artists`,
         `Apr 2025 => 12 artists`,
-        `All time => 162 people, 17772 artists.`,
-        `Most active day => 12 artists on 22. March 2025`,
-        `Best day => Monday, 12 artists`,
+        `All time => ${totalUsersCount} people, ${totalCount} artists.`,
+        `Music day => Monday, 12 artists`,
+        `(use !new when you discover a new artist)`,
       ].join("———————————————————————"),
     );
   },
