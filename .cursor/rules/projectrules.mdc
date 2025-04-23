@@ -28,3 +28,62 @@ metadata:
   version: 1.0
 </rule>
 
+<rule>
+name: environment_variables
+description: Standards for managing and accessing environment variables in the project
+filters:
+  - type: file_extension
+    pattern: "\\.(ts|js)$"
+  - type: event
+    pattern: "(file_create|file_edit)"
+
+actions:
+  - type: suggest
+    message: |
+      Environment Variable Management:
+
+      1. Always use the validated env object from src/env.ts:
+         ```typescript
+         import { env } from "../env";
+         
+         // Good
+         const channel = env.TWITCH_CHANNEL;
+         
+         // Bad - Never use process.env directly
+         const channel = process.env.TWITCH_CHANNEL;
+         ```
+
+      2. When adding new environment variables:
+         - Add them to the schema in src/env.ts
+         - Add them to .env.example with a placeholder value
+         - Update .env with your actual value
+         - The schema ensures type safety and runtime validation
+
+      3. Environment schema structure:
+         ```typescript
+         export const env = z.object({
+           NEW_VARIABLE: z.string(), // or appropriate type
+         }).parse(process.env);
+         ```
+
+      4. Benefits:
+         - Type safety for all env variables
+         - Runtime validation on startup
+         - Centralized documentation
+         - Prevents typos and undefined variables
+
+examples:
+  - input: |
+      // Bad: Direct process.env usage
+      const token = process.env.API_TOKEN;
+      
+      // Good: Using validated env object
+      import { env } from "../env";
+      const token = env.API_TOKEN;
+    output: "Using validated environment variables"
+
+metadata:
+  priority: high
+  version: 1.0
+</rule>
+
