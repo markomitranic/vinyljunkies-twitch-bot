@@ -13,11 +13,17 @@
     "lint:code": "npx eslint \"src/**/*.{js,ts}\"",
     "lint:style": "npx prettier -c .",
     "lint:typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "db:dev": "turso dev --db-file .tmp/local.db",
     "nodecheck": "CODE_NODE_VERSION=\"v$(cat .nvmrc)\" && NODE_VERSION=$(node --version) && if [ $NODE_VERSION != $CODE_NODE_VERSION ]; then echo \"ERROR: Project Node: $CODE_NODE_VERSION, Actual Node: $NODE_VERSION\n\" && exit 1; fi",
     "prepare": "husky"
   },
   "dependencies": {
+    "@libsql/client": "^0.15.4",
     "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.42.0",
     "tmi.js": "^1.8.5",
     "zod": "^3.24.3"
   },
@@ -29,6 +35,7 @@
     "@types/tmi.js": "^1.8.6",
     "@typescript-eslint/eslint-plugin": "^8.30.1",
     "@typescript-eslint/parser": "^8.30.1",
+    "drizzle-kit": "^0.31.0",
     "eslint": "^9.24.0",
     "express": "^5.1.0",
     "husky": "^9.0.11",

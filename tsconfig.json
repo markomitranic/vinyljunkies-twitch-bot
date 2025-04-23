@@ -35,6 +35,6 @@
     "typeRoots": ["./node_modules/@types", "./src/types"]
   },
 
-  "include": ["src", "prettier.config.mjs"],
+  "include": ["src", "prettier.config.mjs", "drizzle.config.ts"],
   "exclude": ["dist", "bundle", "node_modules"]
 }
