@@ -17,6 +17,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "db:dev": "turso dev --db-file .tmp/local.db",
+    "db:seed": "tsup-node src/seed.ts && node dist/seed.js",
     "nodecheck": "CODE_NODE_VERSION=\"v$(cat .nvmrc)\" && NODE_VERSION=$(node --version) && if [ $NODE_VERSION != $CODE_NODE_VERSION ]; then echo \"ERROR: Project Node: $CODE_NODE_VERSION, Actual Node: $NODE_VERSION\n\" && exit 1; fi",
     "prepare": "husky"
   },
