@@ -9,6 +9,7 @@
   "scripts": {
     "start": "tsup-node && node ./dist/index.js",
     "auth": "tsup-node src/auth.ts && node dist/auth.js",
+    "play": "tsup-node src/play.ts && node dist/play.js",
     "lint": "pnpm lint:style && pnpm lint:code && pnpm lint:typecheck",
     "lint:code": "npx eslint \"src/**/*.{js,ts}\"",
     "lint:style": "npx prettier -c .",

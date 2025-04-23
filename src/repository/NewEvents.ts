@@ -1,4 +1,4 @@
-import { count, eq } from "drizzle-orm";
+import { count, countDistinct, eq } from "drizzle-orm";
 import { db } from "~/db/db";
 import { newEventsTable } from "~/db/schema";
 import { takeUniqueOrThrow } from "~/db/takeUniqueOrThrow";
@@ -22,9 +22,8 @@ export async function getTotalCount() {
 
 export async function getTotalUsersCount() {
   const result = await db
-    .select({ count: count() })
+    .select({ count: countDistinct(newEventsTable.username) })
     .from(newEventsTable)
-    .groupBy(newEventsTable.username)
     .then(takeUniqueOrThrow);
   return result?.count ?? 0;
 }
