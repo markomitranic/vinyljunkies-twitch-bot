@@ -1,5 +1,11 @@
 import { sql } from "drizzle-orm";
-import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+  index,
+  integer,
+  sqliteTable,
+  sqliteView,
+  text,
+} from "drizzle-orm/sqlite-core";
 
 export const configTable = sqliteTable("config", {
   key: text().primaryKey().unique(),
@@ -22,4 +28,16 @@ export const newEventsTable = sqliteTable(
       .notNull(),
   },
   (table) => [index("username_idx").on(table.username)],
+);
+
+export const monthlyEventsView = sqliteView("monthly_events").as((qb) =>
+  qb
+    .select({
+      month: sql<string>`strftime('%Y-%m', ${newEventsTable.createdAt})`.as(
+        "month",
+      ),
+      count: sql<number>`count(*)`.as("event_count"),
+    })
+    .from(newEventsTable)
+    .groupBy(sql`strftime('%Y-%m', ${newEventsTable.createdAt})`),
 );

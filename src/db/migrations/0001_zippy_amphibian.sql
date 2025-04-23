@@ -1,0 +1,1 @@
+CREATE VIEW `monthly_events` AS select strftime('%Y-%m', "createdAt") as "month", count(*) as "event_count" from "new_events" group by strftime('%Y-%m', "new_events"."createdAt");

@@ -1,6 +1,6 @@
-import { count, countDistinct, eq } from "drizzle-orm";
+import { count, countDistinct, eq, sql } from "drizzle-orm";
 import { db } from "~/db/db";
-import { newEventsTable } from "~/db/schema";
+import { monthlyEventsView, newEventsTable } from "~/db/schema";
 import { takeUniqueOrThrow } from "~/db/takeUniqueOrThrow";
 
 export async function getPersonalCount(username: string) {
@@ -32,9 +32,28 @@ export function createNewEvent(username: string) {
   return db.insert(newEventsTable).values({ username });
 }
 
+export async function getMonthlyEventCounts() {
+  const result = await db
+    .select()
+    .from(monthlyEventsView)
+    .where(
+      sql`${monthlyEventsView.month} >= strftime('%Y-%m', date('now', '-5 months', 'start of month'))`,
+    )
+    .orderBy(sql`${monthlyEventsView.month}`);
+
+  return result.map((row) => ({
+    month: new Date(row.month + "-01").toLocaleString("en-US", {
+      month: "short",
+      year: "numeric",
+    }),
+    count: row.count,
+  }));
+}
+
 export const NewEvents = {
   getPersonalCount: getPersonalCount,
   getTotalCount: getTotalCount,
   getTotalUsersCount: getTotalUsersCount,
   createNewEvent: createNewEvent,
+  getMonthlyEventCounts: getMonthlyEventCounts,
 };
