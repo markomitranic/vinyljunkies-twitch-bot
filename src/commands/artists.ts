@@ -14,7 +14,6 @@ export const artistsCommand = createBotCommand(
           (event) => `${event.month} => ${event.count} artists`,
         ),
         `All time => ${totalUsersCount} people, ${totalCount} artists.`,
-        `Music day => Monday, 12 artists`,
         `(use !new when you discover a new artist)`,
       ].join("———————————————————————"),
     );

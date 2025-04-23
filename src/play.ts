@@ -10,8 +10,9 @@ import { NewEvents } from "./repository/NewEvents";
 async function play() {
   console.log("Playing...");
 
-  console.log("getTotalCount", await NewEvents.getTotalCount());
-  console.log("getTotalUsersCount", await NewEvents.getTotalUsersCount());
+  const monthlyEvents = await NewEvents.getMonthlyEventCounts();
+  console.log("Monthly Events:");
+  console.table(monthlyEvents);
 }
 
 void play();
