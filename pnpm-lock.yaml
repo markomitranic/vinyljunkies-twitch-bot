@@ -11,15 +11,21 @@ importers:
       '@libsql/client':
         specifier: ^0.15.4
         version: 0.15.4
+      '@twurple/auth':
+        specifier: ^7.2.1
+        version: 7.2.1
+      '@twurple/easy-bot':
+        specifier: ^7.2.1
+        version: 7.2.1
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
       dotenv:
         specifier: ^16.5.0
         version: 16.5.0
       drizzle-orm:
         specifier: ^0.42.0
         version: 0.42.0(@libsql/client@0.15.4)
-      tmi.js:
-        specifier: ^1.8.5
-        version: 1.8.5
       zod:
         specifier: ^3.24.3
         version: 3.24.3
@@ -74,6 +80,46 @@ importers:
         version: 8.30.1(eslint@9.24.0)(typescript@5.8.3)
 
 packages:
+
+  '@d-fischer/cache-decorators@4.0.1':
+    resolution: {integrity: sha512-HNYLBLWs/t28GFZZeqdIBqq8f37mqDIFO6xNPof94VjpKvuP6ROqCZGafx88dk5zZUlBfViV9jD8iNNlXfc4CA==}
+
+  '@d-fischer/connection@9.0.0':
+    resolution: {integrity: sha512-Mljp/EbaE+eYWfsFXUOk+RfpbHgrWGL/60JkAvjYixw6KREfi5r17XdUiXe54ByAQox6jwgdN2vebdmW1BT+nQ==}
+
+  '@d-fischer/cross-fetch@5.0.5':
+    resolution: {integrity: sha512-symjDUPInTrkfIsZc2n2mo9hiAJLcTJsZkNICjZajEWnWpJ3s3zn50/FY8xpNUAf5w3eFuQii2wxztTGpvG1Xg==}
+
+  '@d-fischer/deprecate@2.0.2':
+    resolution: {integrity: sha512-wlw3HwEanJFJKctwLzhfOM6LKwR70FPfGZGoKOhWBKyOPXk+3a9Cc6S9zhm6tka7xKtpmfxVIReGUwPnMbIaZg==}
+
+  '@d-fischer/detect-node@3.0.1':
+    resolution: {integrity: sha512-0Rf3XwTzuTh8+oPZW9SfxTIiL+26RRJ0BRPwj5oVjZFyFKmsj9RGfN2zuTRjOuA3FCK/jYm06HOhwNK+8Pfv8w==}
+
+  '@d-fischer/escape-string-regexp@5.0.0':
+    resolution: {integrity: sha512-7eoxnxcto5eVPW5h1T+ePnVFukmI9f/ZR9nlBLh1t3kyzJDUNor2C+YW9H/Terw3YnbZSDgDYrpCJCHtOtAQHw==}
+    engines: {node: '>=10'}
+
+  '@d-fischer/isomorphic-ws@7.0.2':
+    resolution: {integrity: sha512-xK+qIJUF0ne3dsjq5Y3BviQ4M+gx9dzkN+dPP7abBMje4YRfow+X9jBgeEoTe5e+Q6+8hI9R0b37Okkk8Vf0hQ==}
+    peerDependencies:
+      ws: ^8.2.0
+
+  '@d-fischer/logger@4.2.3':
+    resolution: {integrity: sha512-mJUx9OgjrNVLQa4od/+bqnmD164VTCKnK5B4WOW8TX5y/3w2i58p+PMRE45gUuFjk2BVtOZUg55JQM3d619fdw==}
+
+  '@d-fischer/qs@7.0.2':
+    resolution: {integrity: sha512-yAu3xDooiL+ef84Jo8nLjDjWBRk7RXk163Y6aTvRB7FauYd3spQD/dWvgT7R4CrN54Juhrrc3dMY7mc+jZGurQ==}
+    engines: {node: '>=0.6'}
+
+  '@d-fischer/rate-limiter@1.0.1':
+    resolution: {integrity: sha512-Mq+0pAJsx92hP83cjmsrXQZVQJ+/+u1JFT6fjH8pj3yfUrbT3eDBsA+6J63eat+QaC+Mci78HdiBfpsdBkdwog==}
+
+  '@d-fischer/shared-utils@3.6.4':
+    resolution: {integrity: sha512-BPkVLHfn2Lbyo/ENDBwtEB8JVQ+9OzkjJhUunLaxkw4k59YFlQxUUwlDBejVSFcpQT0t+D3CQlX+ySZnQj0wxw==}
+
+  '@d-fischer/typed-event-emitter@3.3.3':
+    resolution: {integrity: sha512-OvSEOa8icfdWDqcRtjSEZtgJTFOFNgTjje7zaL0+nAtu2/kZtRCSK5wUMrI/aXtCH8o0Qz2vA8UqkhWUTARFQQ==}
 
   '@drizzle-team/brocli@0.10.2':
     resolution: {integrity: sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w==}
@@ -625,6 +671,28 @@ packages:
   '@tsconfig/node22@22.0.1':
     resolution: {integrity: sha512-VkgOa3n6jvs1p+r3DiwBqeEwGAwEvnVCg/hIjiANl5IEcqP3G0u5m8cBJspe1t9qjZRlZ7WFgqq5bJrGdgAKMg==}
 
+  '@twurple/api-call@7.2.1':
+    resolution: {integrity: sha512-x+p6fMleFA/pJHVu8tFpkDkARGGt30EAUA+cLc+dEtU1EpH1mv7nv5LLHh9NW9vdZpYp0jk5TyY/TSbHdj7Ggw==}
+
+  '@twurple/api@7.2.1':
+    resolution: {integrity: sha512-fqoX87GyHRL4pSmgloF5Mfj2XDJMx8fWBbcl4JGG7bgF2jvH5X9p3nzH169zqwSU/etfUdfytyoQ7/r2R+G3cg==}
+    peerDependencies:
+      '@twurple/auth': 7.2.1
+
+  '@twurple/auth@7.2.1':
+    resolution: {integrity: sha512-IGHsJ/g0RblRSBC59XKA9277rE5w1dAKdhCPQz1QwkWnt6fsUyVoD1ut+qZvjuh7ssX1SBtNzFqohydfmWZytg==}
+
+  '@twurple/chat@7.2.1':
+    resolution: {integrity: sha512-crhU7WcE/9xiLfYjh371SFsqvx2fIVp+af1BcmbwmowOOF3BG311op8EOOAXUfblIcKRuqVqAoMlq4pquYYQ7Q==}
+    peerDependencies:
+      '@twurple/auth': 7.2.1
+
+  '@twurple/common@7.2.1':
+    resolution: {integrity: sha512-veLY5laA00dPuekAcpHN6GDvnr6s1uH7yBDebLC1NhpcLkQgiAlGA50RdNS5YeA3xz7kfE2MOcYSi2S6Qoc7EA==}
+
+  '@twurple/easy-bot@7.2.1':
+    resolution: {integrity: sha512-FfBw2NLW2Ii1nVfnqOtf8/GkeqzZn0kj8hFRRjmE1ftzLYgXDFAami15wEBxfTzB0Dd4QxVaMRlrh9icVVxGfA==}
+
   '@types/body-parser@1.19.5':
     resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
 
@@ -855,6 +923,9 @@ packages:
   data-uri-to-buffer@4.0.1:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
     engines: {node: '>= 12'}
+
+  dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
 
   debug@4.4.0:
     resolution: {integrity: sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==}
@@ -1242,6 +1313,9 @@ packages:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
     engines: {node: '>= 0.10'}
 
+  ircv3@0.33.0:
+    resolution: {integrity: sha512-7rK1Aial3LBiFycE8w3MHiBBFb41/2GG2Ll/fR2IJj1vx0pLpn1s+78K+z/I4PZTqCCSp/Sb4QgKMh3NMhx0Kg==}
+
   is-docker@3.0.0:
     resolution: {integrity: sha512-eljcgEDlEns/7AXFosB5K/2nCM4P7FQPkGc/DWLy5rmFEWvZayGrik1d9/QIY5nJ4f9YsVvBkA6kJpHn9rISdQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -1303,6 +1377,10 @@ packages:
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
+
+  klona@2.0.6:
+    resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
+    engines: {node: '>= 8'}
 
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
@@ -1547,6 +1625,10 @@ packages:
   resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
 
+  retry@0.13.1:
+    resolution: {integrity: sha512-XQBQ3I8W1Cge0Seh+6gjj03LbmRFWuoszgK9ooCpwYIrhhoO80pfq4cUkU5DkknwfOfFteRwlZ56PYOGYyFWdg==}
+    engines: {node: '>= 4'}
+
   reusify@1.1.0:
     resolution: {integrity: sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
@@ -1675,10 +1757,6 @@ packages:
     resolution: {integrity: sha512-qkf4trmKSIiMTs/E63cxH+ojC2unam7rJ0WrauAzpT3ECNTxGRMlaXxVbfxMUC/w0LaYk6jQ4y/nGR9uBO3tww==}
     engines: {node: '>=12.0.0'}
 
-  tmi.js@1.8.5:
-    resolution: {integrity: sha512-A9qrydfe1e0VWM9MViVhhxVgvLpnk7pFShVUWePsSTtoi+A1X+Zjdoa7OJd7/YsgHXGj3GkNEvnWop/1WwZuew==}
-    engines: {node: '>=10.0.0'}
-
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
@@ -1705,6 +1783,9 @@ packages:
 
   ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
+
+  tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
   tsup@8.4.0:
     resolution: {integrity: sha512-b+eZbPCjz10fRryaAA7C8xlIHnf8VnsaRqydheLIqwG/Mcpfk8Z5zp3HayX7GaTygkigHl5cBUs+IhcySiIexQ==}
@@ -1815,6 +1896,62 @@ packages:
     resolution: {integrity: sha512-HhY1oqzWCQWuUqvBFnsyrtZRhyPeR7SUGv+C4+MsisMuVfSPx8HpwWqH8tRahSlt6M3PiFAcoeFhZAqIXTxoSg==}
 
 snapshots:
+
+  '@d-fischer/cache-decorators@4.0.1':
+    dependencies:
+      '@d-fischer/shared-utils': 3.6.4
+      tslib: 2.8.1
+
+  '@d-fischer/connection@9.0.0':
+    dependencies:
+      '@d-fischer/isomorphic-ws': 7.0.2(ws@8.18.1)
+      '@d-fischer/logger': 4.2.3
+      '@d-fischer/shared-utils': 3.6.4
+      '@d-fischer/typed-event-emitter': 3.3.3
+      '@types/ws': 8.18.1
+      tslib: 2.8.1
+      ws: 8.18.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  '@d-fischer/cross-fetch@5.0.5':
+    dependencies:
+      node-fetch: 2.7.0
+    transitivePeerDependencies:
+      - encoding
+
+  '@d-fischer/deprecate@2.0.2': {}
+
+  '@d-fischer/detect-node@3.0.1': {}
+
+  '@d-fischer/escape-string-regexp@5.0.0': {}
+
+  '@d-fischer/isomorphic-ws@7.0.2(ws@8.18.1)':
+    dependencies:
+      ws: 8.18.1
+
+  '@d-fischer/logger@4.2.3':
+    dependencies:
+      '@d-fischer/detect-node': 3.0.1
+      '@d-fischer/shared-utils': 3.6.4
+      tslib: 2.8.1
+
+  '@d-fischer/qs@7.0.2': {}
+
+  '@d-fischer/rate-limiter@1.0.1':
+    dependencies:
+      '@d-fischer/logger': 4.2.3
+      '@d-fischer/shared-utils': 3.6.4
+      tslib: 2.8.1
+
+  '@d-fischer/shared-utils@3.6.4':
+    dependencies:
+      tslib: 2.8.1
+
+  '@d-fischer/typed-event-emitter@3.3.3':
+    dependencies:
+      tslib: 2.8.1
 
   '@drizzle-team/brocli@0.10.2': {}
 
@@ -2191,6 +2328,81 @@ snapshots:
 
   '@tsconfig/node22@22.0.1': {}
 
+  '@twurple/api-call@7.2.1':
+    dependencies:
+      '@d-fischer/cross-fetch': 5.0.5
+      '@d-fischer/qs': 7.0.2
+      '@d-fischer/shared-utils': 3.6.4
+      '@twurple/common': 7.2.1
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - encoding
+
+  '@twurple/api@7.2.1(@twurple/auth@7.2.1)':
+    dependencies:
+      '@d-fischer/cache-decorators': 4.0.1
+      '@d-fischer/cross-fetch': 5.0.5
+      '@d-fischer/detect-node': 3.0.1
+      '@d-fischer/logger': 4.2.3
+      '@d-fischer/rate-limiter': 1.0.1
+      '@d-fischer/shared-utils': 3.6.4
+      '@d-fischer/typed-event-emitter': 3.3.3
+      '@twurple/api-call': 7.2.1
+      '@twurple/auth': 7.2.1
+      '@twurple/common': 7.2.1
+      retry: 0.13.1
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - encoding
+
+  '@twurple/auth@7.2.1':
+    dependencies:
+      '@d-fischer/logger': 4.2.3
+      '@d-fischer/shared-utils': 3.6.4
+      '@d-fischer/typed-event-emitter': 3.3.3
+      '@twurple/api-call': 7.2.1
+      '@twurple/common': 7.2.1
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - encoding
+
+  '@twurple/chat@7.2.1(@twurple/auth@7.2.1)':
+    dependencies:
+      '@d-fischer/cache-decorators': 4.0.1
+      '@d-fischer/deprecate': 2.0.2
+      '@d-fischer/logger': 4.2.3
+      '@d-fischer/rate-limiter': 1.0.1
+      '@d-fischer/shared-utils': 3.6.4
+      '@d-fischer/typed-event-emitter': 3.3.3
+      '@twurple/auth': 7.2.1
+      '@twurple/common': 7.2.1
+      ircv3: 0.33.0
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  '@twurple/common@7.2.1':
+    dependencies:
+      '@d-fischer/shared-utils': 3.6.4
+      klona: 2.0.6
+      tslib: 2.8.1
+
+  '@twurple/easy-bot@7.2.1':
+    dependencies:
+      '@d-fischer/logger': 4.2.3
+      '@d-fischer/shared-utils': 3.6.4
+      '@d-fischer/typed-event-emitter': 3.3.3
+      '@twurple/api': 7.2.1(@twurple/auth@7.2.1)
+      '@twurple/auth': 7.2.1
+      '@twurple/chat': 7.2.1(@twurple/auth@7.2.1)
+      '@twurple/common': 7.2.1
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - utf-8-validate
+
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.38
@@ -2449,6 +2661,8 @@ snapshots:
       which: 2.0.2
 
   data-uri-to-buffer@4.0.1: {}
+
+  dayjs@1.11.13: {}
 
   debug@4.4.0:
     dependencies:
@@ -2829,6 +3043,19 @@ snapshots:
 
   ipaddr.js@1.9.1: {}
 
+  ircv3@0.33.0:
+    dependencies:
+      '@d-fischer/connection': 9.0.0
+      '@d-fischer/escape-string-regexp': 5.0.0
+      '@d-fischer/logger': 4.2.3
+      '@d-fischer/shared-utils': 3.6.4
+      '@d-fischer/typed-event-emitter': 3.3.3
+      klona: 2.0.6
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
   is-docker@3.0.0: {}
 
   is-extglob@2.1.1: {}
@@ -2876,6 +3103,8 @@ snapshots:
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
+
+  klona@2.0.6: {}
 
   levn@0.4.1:
     dependencies:
@@ -3067,6 +3296,8 @@ snapshots:
 
   resolve-pkg-maps@1.0.0: {}
 
+  retry@0.13.1: {}
+
   reusify@1.1.0: {}
 
   rollup@4.40.0:
@@ -3244,15 +3475,6 @@ snapshots:
       fdir: 6.4.3(picomatch@4.0.2)
       picomatch: 4.0.2
 
-  tmi.js@1.8.5:
-    dependencies:
-      node-fetch: 2.7.0
-      ws: 8.18.1
-    transitivePeerDependencies:
-      - bufferutil
-      - encoding
-      - utf-8-validate
-
   to-regex-range@5.0.1:
     dependencies:
       is-number: 7.0.0
@@ -3272,6 +3494,8 @@ snapshots:
       typescript: 5.8.3
 
   ts-interface-checker@0.1.13: {}
+
+  tslib@2.8.1: {}
 
   tsup@8.4.0(typescript@5.8.3):
     dependencies:

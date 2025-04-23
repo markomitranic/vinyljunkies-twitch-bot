@@ -3,21 +3,17 @@ import { db } from "~/db/db";
 import { configTable } from "~/db/schema";
 import { takeUniqueOrThrow } from "~/db/takeUniqueOrThrow";
 
-export type ConfigKey =
-  | "twitch_auth_token"
-  | "twitch_refresh_token"
-  | "twitch_auth_token_expires_at";
+export type ConfigKey = "twitch_auth_token";
 
-export function getConfigValue(key: ConfigKey): Promise<string | undefined> {
+export function getConfig(key: ConfigKey) {
   return db
     .select()
     .from(configTable)
     .where(eq(configTable.key, key))
-    .then(takeUniqueOrThrow)
-    .then((value) => value?.value);
+    .then(takeUniqueOrThrow);
 }
 
-export function setConfigValue(key: ConfigKey, value: string) {
+export function setConfig(key: ConfigKey, value: string) {
   return db
     .insert(configTable)
     .values({ key, value })
