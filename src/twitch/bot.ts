@@ -15,8 +15,29 @@ export async function getBot(commands: BotCommand[]) {
   });
 
   bot.onConnect(() => {
-    console.log("Bot connected to channel", env.TWITCH_CHANNEL);
+    console.log("Bot connected to Twitch chat");
   });
+
+  bot.onDisconnect((manually: boolean, error?: Error) => {
+    console.error(
+      "Bot disconnected:",
+      manually ? "Manual disconnect" : error?.message || "Unknown error",
+    );
+  });
+
+  bot.onJoinFailure((event) => {
+    console.error(
+      "Failed to join channel:",
+      event.broadcasterName,
+      event.reason,
+    );
+  });
+
+  // bot.onMessage((message) => {
+  //   console.log(
+  //     `[${message.broadcasterName}] ${message.userName}: ${message.text}`,
+  //   );
+  // });
 
   return bot;
 }

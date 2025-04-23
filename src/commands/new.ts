@@ -4,6 +4,7 @@ import { NewEvents } from "~/repository/NewEvents";
 export const newCommand = createBotCommand(
   "new",
   async (_params, { reply, userName, userDisplayName }) => {
+    console.log("!new command by:", userName);
     await NewEvents.createNewEvent(userName);
     const personalCount = await NewEvents.getPersonalCount(userName);
 
